@@ -5,7 +5,7 @@ on:
 
 jobs:
   test:
-    runs-on: codebuild-ubuntu-test-${{ github.run_id }}-${{ github.run_attempt }}
+    runs-on: codebuild-ubuntu-test2-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - run: echo "Hello World!"
         shell: bash
