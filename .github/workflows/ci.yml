@@ -19,3 +19,5 @@ jobs:
         shell: bash
       - run: echo "$(docker version)"
         shell: bash
+      - run: echo "$(id -u)"
+        shell: bash
