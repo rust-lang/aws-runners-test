@@ -19,7 +19,7 @@ jobs:
   test2:
     runs-on: ubuntu-22.04
     steps:
-      - run: echo "hello from code build"
+      - run: echo "hello from github actions"
         shell: bash
       - run: echo "$(docker version)"
         shell: bash
