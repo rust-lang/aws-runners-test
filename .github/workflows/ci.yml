@@ -4,18 +4,22 @@ on:
   push:
 
 jobs:
-  # test:
-  #   runs-on: codebuild-ubuntu-small-${{ github.run_id }}-${{ github.run_attempt }}
-  #   steps:
-  #     - run: echo "Hello World!"
-  #       shell: bash
-  #     - run: echo "$(docker version)"
-  #       shell: bash
+  test:
+    runs-on: codebuild-ubuntu-small-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - run: echo "hello from code build"
+        shell: bash
+      - run: echo "$(docker version)"
+        shell: bash
+      - run: echo "$(id -u)"
+        shell: bash
+      - run: echo "$(whoami)"
+        shell: bash
 
   test2:
     runs-on: ubuntu-22.04
     steps:
-      - run: echo "Hello World!"
+      - run: echo "hello from code build"
         shell: bash
       - run: echo "$(docker version)"
         shell: bash
