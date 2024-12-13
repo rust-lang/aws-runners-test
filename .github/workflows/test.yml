@@ -1,0 +1,11 @@
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v4
+      - run: echo "hello from github actions"
+        shell: bash
