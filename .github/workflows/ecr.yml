@@ -1,0 +1,35 @@
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+# Permission can be added at job level or workflow level
+permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read    # This is required for actions/checkout
+
+jobs:
+  AssumeRoleAndCallIdentity:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v4
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@97834a484a5ab3c40fa9e2eb40fcf8041105a573
+        with:
+          role-to-assume: arn:aws:iam::442426873467:role/ci--rust-lang--aws-runners-test
+          # region to use when authenticating to AWS ECR Public Gallery
+          aws-region: us-east-1
+
+      # Hello from AWS: WhoAmI
+      - name: Sts GetCallerIdentity
+        run: |
+          aws sts get-caller-identity
+
+      - name: ECR GetAuthorizationToken
+        run: |
+          aws ecr-public get-login-password --region us-east-1 \
+            | docker login --username AWS --password-stdin public.ecr.aws
+
+      - name: Pull image
+        run: docker pull public.ecr.aws/ubuntu/ubuntu:22.04
