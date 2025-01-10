@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  test:
+  test-cb:
     runs-on: codebuild-ubuntu-small-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - run: echo "hello from code build"
@@ -16,14 +16,16 @@ jobs:
       - run: echo "$(whoami)"
         shell: bash
       - run: |
-          echo "network ls:"
+          echo "++++ network ls:"
           docker network ls
-          echo "network inspect bridge:"
+
+          echo "++++ network inspect bridge:"
           docker network inspect bridge
-          echo "ipv6 ping:"
+
+          echo "++++ ipv6 ping:"
           docker run --rm busybox ping6 -c 4 ipv6.google.com
 
-  test2:
+  test-gh:
     runs-on: ubuntu-22.04
     steps:
       - run: echo "hello from github actions"
@@ -35,21 +37,20 @@ jobs:
       - run: echo "$(whoami)"
         shell: bash
       - run: |
-          echo "network ls:"
+          echo "++++ network ls:"
           docker network ls
 
-          echo "network inspect bridge:"
+          echo "++++ network inspect bridge:"
           docker network inspect bridge
 
-          echo "enable ipv6"
+          echo "++++ enable ipv6"
           sudo mkdir -p /etc/docker
-
           echo '{"ipv6":true,"fixed-cidr-v6":"fd9a:8454:6789:13f7::/64"}' \
               | sudo tee /etc/docker/daemon.json
           sudo service docker restart
 
-          echo "network inspect bridge:"
+          echo "++++ network inspect bridge:"
           docker network inspect bridge
 
-          echo "ipv6 ping:"
+          echo "++++ ipv6 ping:"
           docker run --rm busybox ping6 -c 4 ipv6.google.com
