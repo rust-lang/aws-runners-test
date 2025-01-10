@@ -41,3 +41,7 @@ jobs:
           docker network inspect bridge
           echo "ipv6 pin:"
           docker run --rm busybox ping6 -c 4 ipv6.google.com
+          sudo mkdir -p /etc/docker
+          echo '{"ipv6":true,"fixed-cidr-v6":"fd9a:8454:6789:13f7::/64"}' \
+              | sudo tee /etc/docker/daemon.json
+          sudo service docker restart
