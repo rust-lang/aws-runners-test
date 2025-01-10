@@ -15,6 +15,13 @@ jobs:
         shell: bash
       - run: echo "$(whoami)"
         shell: bash
+      - run: |
+          echo "daemon.json:"
+          cat /etc/docker/daemon.json
+          echo "network ls:"
+          docker network ls
+          echo "network inspect bridge:"
+          docker network inspect bridge
 
   test2:
     runs-on: ubuntu-22.04
@@ -27,3 +34,10 @@ jobs:
         shell: bash
       - run: echo "$(whoami)"
         shell: bash
+      - run: |
+          echo "daemon.json:"
+          cat /etc/docker/daemon.json
+          echo "network ls:"
+          docker network ls
+          echo "network inspect bridge:"
+          docker network inspect bridge
