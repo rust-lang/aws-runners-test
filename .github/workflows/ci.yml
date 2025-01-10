@@ -20,6 +20,8 @@ jobs:
           docker network ls
           echo "network inspect bridge:"
           docker network inspect bridge
+          echo "ipv6 pin:"
+          docker run --rm busybox ping6 -c 4 ipv6.google.com
 
   test2:
     runs-on: ubuntu-22.04
@@ -37,3 +39,5 @@ jobs:
           docker network ls
           echo "network inspect bridge:"
           docker network inspect bridge
+          echo "ipv6 pin:"
+          docker run --rm busybox ping6 -c 4 ipv6.google.com
