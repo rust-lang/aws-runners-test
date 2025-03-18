@@ -2,4 +2,4 @@
 
 Repository used by the ci-staging aws account to test aws codebuild runners.
 
-Used only by the infra team.
+This repo is only used by the infra team.
