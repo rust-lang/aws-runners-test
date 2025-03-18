@@ -1,3 +1,3 @@
 # Aws runners test
 
-just a test for aws codebuild runners.
+Repository used by the ci-staging aws account to test aws codebuild runners.
