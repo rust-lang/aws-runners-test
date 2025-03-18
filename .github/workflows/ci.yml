@@ -5,7 +5,7 @@ on:
 
 jobs:
   test-cb:
-    runs-on: codebuild-ubuntu-small-${{ github.run_id }}-${{ github.run_attempt }}
+    runs-on: codebuild-ubuntu-2c-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - run: echo "hello from code build"
         shell: bash
@@ -15,21 +15,6 @@ jobs:
         shell: bash
       - run: echo "$(whoami)"
         shell: bash
-      - run: |
-          echo "++++ network ls:"
-          docker network ls
-
-          echo "++++ network inspect bridge:"
-          docker network inspect bridge
-
-          echo "++++ enable ipv6"
-          sudo mkdir -p /etc/docker
-          echo '{"ipv6":true,"fixed-cidr-v6":"fd9a:8454:6789:13f7::/64"}' \
-              | sudo tee /etc/docker/daemon.json
-          sudo service docker restart
-
-          echo "++++ ipv6 ping:"
-          docker run --rm busybox ping6 -c 4 ipv6.google.com
 
   test-gh:
     runs-on: ubuntu-22.04
