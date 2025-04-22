@@ -18,6 +18,9 @@ jobs:
       - run: echo $GITHUB_ACTIONS
         name: echo GITHUB_ACTIONS
         shell: bash
+      - run: echo "$(numfmt --version)
+        name: numfmt
+        shell: bash
 
   test-gh:
     runs-on: ubuntu-22.04
@@ -32,4 +35,7 @@ jobs:
         shell: bash
       - run: echo $GITHUB_ACTIONS
         name: echo GITHUB_ACTIONS
+        shell: bash
+      - run: echo "$(numfmt --version)
+        name: numfmt
         shell: bash
