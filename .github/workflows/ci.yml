@@ -2,10 +2,12 @@ name: CI
 
 on:
   push:
+    branches:
+      - auto
 
 jobs:
   test-cb:
-    runs-on: codebuild-ubuntu-22-2c-${{ github.run_id }}-${{ github.run_attempt }}
+    runs-on: codebuild-ubuntu-22-36c-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - run: echo "hello from code build"
         shell: bash
@@ -17,25 +19,21 @@ jobs:
         shell: bash
       - run: echo $GITHUB_ACTIONS
         name: echo GITHUB_ACTIONS
-        shell: bash
-      - run: echo "$(numfmt --version)"
-        name: numfmt
-        shell: bash
 
-  test-gh:
-    runs-on: ubuntu-22.04
-    steps:
-      - run: echo "hello from github actions"
-        shell: bash
-      - run: echo "$(docker version)"
-        shell: bash
-      - run: echo "$(id -u)"
-        shell: bash
-      - run: echo "$(whoami)"
-        shell: bash
-      - run: echo $GITHUB_ACTIONS
-        name: echo GITHUB_ACTIONS
-        shell: bash
-      - run: echo "$(numfmt --version)"
-        name: numfmt
-        shell: bash
+#   test-gh:
+#     runs-on: ubuntu-22.04
+#     steps:
+#       - run: echo "hello from github actions"
+#         shell: bash
+#       - run: echo "$(docker version)"
+#         shell: bash
+#       - run: echo "$(id -u)"
+#         shell: bash
+#       - run: echo "$(whoami)"
+#         shell: bash
+#       - run: echo $GITHUB_ACTIONS
+#         name: echo GITHUB_ACTIONS
+#         shell: bash
+#       - run: echo "$(numfmt --version)"
+#         name: numfmt
+#         shell: bash
